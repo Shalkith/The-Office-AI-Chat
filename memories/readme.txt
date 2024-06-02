@@ -1,0 +1,1 @@
+Memories from your characters will be stored in this folder
