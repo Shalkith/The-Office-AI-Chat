@@ -92,7 +92,7 @@ def generate_response(character,characterfirstname,original_tweet=None,original_
     }
 
     data = {
-        "model": "llama3:70b-instruct",
+        "model": "command-r:latest",
         "messages": messages,
         "stream": False
     }
