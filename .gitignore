@@ -1,2 +1,4 @@
 memories/*.json
-configs/twitter_details.py
+
+
+*.pyc
