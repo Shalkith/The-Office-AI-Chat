@@ -25,6 +25,12 @@ def main():
     elif character == 'dwight':
         character = 'Dwight Schrute from The Office'
         characterfirstname = 'dwight'
+    elif character == 'kevin':
+        character = 'Kevin Malone from The Office'
+        characterfirstname = 'kevin'
+    elif character == 'angela':
+        character = 'Angela Martin from The Office'
+        characterfirstname = 'angela'
     else:
         print('Invalid character')
         return
@@ -42,7 +48,7 @@ def main():
     tweetid = response[0]['id']
     # if the text if the tweet montions another character, then generate a response for that character
     for value in character_twitter_handles:
-        if value.lower() in tweet.lower() or character_twitter_handles[value].lower() in tweet.lower():
+        if character_twitter_handles[value].lower() in tweet.lower():
             tweet = ai_generate.generate_response(value+' from The Office', value.lower(),original_tweet=tweet,original_tweet_from=characterfirstname)
             print()
             print(value)
