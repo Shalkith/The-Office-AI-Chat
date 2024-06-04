@@ -46,9 +46,11 @@ def main():
     response = tweeter.send_tweet(characterfirstname, tweet)
 
     tweetid = response[0]['id']
+
+    responders = []
     # if the text if the tweet montions another character, then generate a response for that character
     for value in character_twitter_handles:
-        if character_twitter_handles[value].lower() in tweet.lower():
+        if character_twitter_handles[value].lower() in tweet.lower() and value.lower() != characterfirstname and value.lower() not in responders:
             tweet = ai_generate.generate_response(value+' from The Office', value.lower(),original_tweet=tweet,original_tweet_from=characterfirstname)
             print()
             print(value)
@@ -56,7 +58,8 @@ def main():
             print(tweet)
             print()
             response = tweeter.send_tweet(value.lower(), tweet,responding_to=tweetid)
-            break
+            responders.append(value.lower())
+            #break
 
 if __name__ == '__main__':
     main()
