@@ -7,7 +7,9 @@ from datetime import datetime
 #ollama requests api
 def generate_response(character,characterfirstname,original_tweet=None,original_tweet_from=None):
 
-    
+    twitter_handles = ''
+    for key in system_messages.character_twitter_handles:
+        twitter_handles += key + ' is ' + system_messages.character_twitter_handles[key] + ', '    
 
 
     system_context = [
@@ -21,9 +23,7 @@ def generate_response(character,characterfirstname,original_tweet=None,original_
     }
     ]
 
-    twitter_handles = ''
-    for key in system_messages.character_twitter_handles:
-        twitter_handles += key + ' is ' + system_messages.character_twitter_handles[key] + ', '
+
     if original_tweet is not None:
         user_message = [
             {
@@ -45,14 +45,9 @@ def generate_response(character,characterfirstname,original_tweet=None,original_
                 """.format(character,characterfirstname,datetime.now().strftime("%A"),str(datetime.now()),system_messages.character_twitter_handles)
             }
         ]
-
-    print(user_message)
-    
-
     
 
     chatid = characterfirstname+'_memory'
-
 
     # for each unique chatid we will create a json file with the chat history
     # if it already exists we will append to it
